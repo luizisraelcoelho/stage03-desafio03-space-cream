@@ -31,9 +31,9 @@
   /*1rem = 10px*/
 
   font-size: 62.5%;
-  --fs-body: 2rem;
-  --fs-h1: 4rem;
-  --fs-h2: 2rem;
+  --fs-body: clamp(1.6rem, 0.5rem + 2vw, 2rem);
+  --fs-h1: clamp(4rem, 1rem + 2vw, 3rem);
+  --fs-h2: clamp(2rem, 0.5rem + 2vw, 2rem);
 
 }
 
@@ -46,39 +46,6 @@ body {
 
   max-width: 38.4rem;
   margin: 0 auto;
-}
-
-@media (min-width: 700px) {
-
-  :root {
-   --fs-h1: 5.6rem;
-  
-  }
-
-
-  .page {
-    max-width: 117rem;
-    padding: 0 5rem;
-    display: grid;
-  }
-
-
-  main {
-    grid-template-areas: "A B B" "C C D";
-  }
-
-  main div:nth-child(1) {
-    grid-area: A;
-  }
-  main div:nth-child(2) {
-    grid-area: B;
-  }
-  main div:nth-child(3) {
-    grid-area: C;
-  }
-  main div:nth-child(4) {
-    grid-area: D;
-  }
 }
 
 header {
@@ -104,6 +71,7 @@ header h1 {
   text-align: center;
   margin: 3.2rem 0 2.9rem 0;
   line-height: 3.4rem;
+  padding: 0.8rem;
 }
 
 header img {
@@ -118,7 +86,7 @@ header img {
 .resu-info p {
   text-align: center;
   font-family: var(--ff-texting);
-  font-size: 2rem;
+  font-size: var(--fs-body);
   line-height: 1.5rem;
   color: var(--fc-2);
   font-weight: 400;
@@ -135,6 +103,7 @@ main {
 .card {
   position: relative;
   font-family: var(--ff-heading);
+  
 }
 
 /*Imagens sorvetes*/
@@ -153,6 +122,7 @@ img {
 
   transition: all 200ms;
   animation: downtop 700ms 350ms forwards;
+  filter: brightness(0.5) saturate(0.5);
 
 
 }
@@ -188,9 +158,22 @@ img {
 }
 
 footer {
-  display: none;
+margin: 1.9rem auto 1rem;
+font-size: 1.4rem;
+  line-height: 2.8rem;
+  text-align: center;
+  align-items: center;
+  display: inline-block;
 }
 
+footer a {
+  font-weight: bold;
+  color: var(--fc-2);
+}
+footer a:hover {
+  font-weight: bold;
+  color: #86679d;
+}
 
 @keyframes topdown {
   0% {
@@ -216,11 +199,38 @@ footer {
   }
 }
 
-/*
-.car2 img {
- 
-  height: 45rem ;
-  object-fit: cover;
- 
+@media (min-width: 600px) {
+  
+  .page {
+    max-width: 117rem;
+    padding: 0 5rem;
+    display: grid;
+  }
+
+  main {
+    grid-template-columns: 1fr 1fr ;
+  }
 }
-*/
+@media (min-width: 900px) {
+
+ 
+  
+  main {
+    grid-template-areas: 
+    "A B B" 
+    "C C D";
+  }
+  main div:nth-child(1) {
+    grid-area: A;
+  }
+  main div:nth-child(2) {
+    grid-area: B;
+  }
+  main div:nth-child(3) {
+    grid-area: C;
+  }
+  main div:nth-child(4) {
+    grid-area: D;
+  }
+}
+
