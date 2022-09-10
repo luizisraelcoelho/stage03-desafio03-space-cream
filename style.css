@@ -9,6 +9,8 @@
   /*var fonts family*/
   --ff-heading: 'Staatliches';
   --ff-texting: 'Palanquin', sans-serif;
+  --ff-deskp:'Open Sans', sans-serif; 
+  --ff-textp: 'Roboto', sans-serif;
 
   /*Backuground*/
   --bg-color1: #EFF1FF;
@@ -103,7 +105,7 @@ main {
 .card {
   position: relative;
   font-family: var(--ff-heading);
-  
+
 }
 
 /*Imagens sorvetes*/
@@ -156,10 +158,10 @@ img {
 
 
 }
-
+/*
 footer {
-margin: 1.9rem auto 1rem;
-font-size: 1.4rem;
+  margin: 1.9rem auto 1rem;
+  font-size: 1.4rem;
   line-height: 2.8rem;
   text-align: center;
   align-items: center;
@@ -170,11 +172,12 @@ footer a {
   font-weight: bold;
   color: var(--fc-2);
 }
+
 footer a:hover {
   font-weight: bold;
   color: #86679d;
 }
-
+*/
 @keyframes topdown {
   0% {
     opacity: 0;
@@ -200,37 +203,149 @@ footer a:hover {
 }
 
 @media (min-width: 600px) {
-  
+
   .page {
-    max-width: 117rem;
-    padding: 0 5rem;
-    display: grid;
+    height: 100vh;
+    max-width: 128rem;
+    display: grid;grid-template-columns: 4fr 6fr;
+    grid-template-rows: 1fr 120rem;
+    grid-template-areas:
+      "hinfo main"
+      "footer footer"
+  }
+
+  .hinfo {
+    background-color: var(--bg-color2);
+    grid-area: hinfo;
+  }
+  .hinfo h1 {
+    font-size: 3rem;
+  }
+  .resu-info p {
+    color: var(--fc-1);
+    font-size: 1.3rem;
+    line-height: 2.0rem;
+    width: 27.5rem;
+    align-items: center;
+    font-family: var(--ff-textp);
   }
 
   main {
-    grid-template-columns: 1fr 1fr ;
+    grid-template-columns: 1fr 1fr;
+    padding: 5rem;
+    grid-area: main;
+    grid-template-columns: repeat(auto-fit, minmax 150px, 1fr);
   }
+.card h2 {
+  font-size: 1.5rem;
+  align-items: center;
+  margin: auto;
+  padding: auto;
+  
 }
+
+footer {
+  grid-area: footer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer p {
+  font-family: var(--ff-deskp);
+  font-size: 1.4rem;
+  color: var(--fc-3);
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--fc-3);
+  font-weight: bold;
+}
+
+footer a {
+  color: #252529;
+}
+}
+
 @media (min-width: 900px) {
 
- 
-  
+  .page {
+    width: 100%;
+    max-width: 128rem;
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    grid-template-rows: 1fr 10rem;
+    grid-template-areas:
+      "hinfo main"
+      "hinfo footer";
+  }
+
   main {
-    grid-template-areas: 
-    "A B B" 
-    "C C D";
+    grid: 200px 168px 200px / 1fr 1fr 1fr;
+    grid-template-areas:
+      "A B C"
+      "D B F"
+      "D E F";
+      gap: 3.2rem;
+  }
+
+  .card:nth-child(even) img {
+    height: 400px;
+  }
+
+  .card:nth-child(odd) img {
+    height: 200px;
   }
   main div:nth-child(1) {
     grid-area: A;
   }
+
   main div:nth-child(2) {
     grid-area: B;
   }
+
   main div:nth-child(3) {
     grid-area: C;
   }
+
   main div:nth-child(4) {
     grid-area: D;
   }
-}
+  main div:nth-child(5) {
+    grid-area: E;
+  }
+  main div:nth-child(6) {
+    grid-area: F;
+  }
+  .card h2 {
+    animation: none;
+    transition: opacity 200ms ease-in;
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0.557);
+    color: #000;
+    top: 50%;
+    right: 0; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+    z-index: 100;
+  }
 
+  .card {
+    overflow: hidden;
+  }
+
+  .card img {
+    transition: transform 400ms ease;
+  }
+
+  .card:hover img {
+    transform: scale(1.1);
+  }
+
+  .card:hover h2 {
+    opacity: 1;
+  }
+
+}
